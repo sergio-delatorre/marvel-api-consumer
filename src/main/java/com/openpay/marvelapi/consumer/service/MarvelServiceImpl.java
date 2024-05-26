@@ -29,4 +29,12 @@ public class MarvelServiceImpl implements MarvelService {
         serviceRequestLogRepository.save(serviceRequestLog);
         return characterService.getCharacters();
     }
+
+    @Override
+    public CharacterResponse getCharacterById(Long characterId) {
+        ServiceRequestLog serviceRequestLog = new ServiceRequestLog();
+        serviceRequestLog.setPath(MarvelApiConstants.CHARACTERS_URI+"/"+characterId);
+        serviceRequestLogRepository.save(serviceRequestLog);
+        return characterService.getCharacterById(characterId);
+    }
 }

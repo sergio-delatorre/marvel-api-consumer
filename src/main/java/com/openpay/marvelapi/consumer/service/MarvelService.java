@@ -8,4 +8,6 @@ public interface MarvelService {
 
     List<CharacterResponse> getCharacters();
 
+    CharacterResponse getCharacterById(Long id);
+
 }
