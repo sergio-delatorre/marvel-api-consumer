@@ -5,8 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "service_request_log")
-public class ServiceRequestLog extends Auditable {
+@Table(name = "request_log")
+public class RequestLog extends Auditable {
 
     @Column(nullable = false)
     private String path;

@@ -2,8 +2,8 @@ package com.openpay.marvelapi.consumer.service;
 
 import com.openpay.marvelapi.client.model.dto.CharacterResponse;
 import com.openpay.marvelapi.client.service.CharacterService;
-import com.openpay.marvelapi.consumer.model.entity.ServiceRequestLog;
-import com.openpay.marvelapi.consumer.repository.ServiceRequestLogRepository;
+import com.openpay.marvelapi.consumer.model.entity.RequestLog;
+import com.openpay.marvelapi.consumer.repository.RequestLogRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,7 +23,7 @@ public class MarvelServiceTest {
     @Mock
     private CharacterService characterService;
     @Mock
-    private ServiceRequestLogRepository repository;
+    private RequestLogRepository repository;
 
     @Test
     public void testGetCharacters_Success() {
@@ -33,7 +33,7 @@ public class MarvelServiceTest {
         List<CharacterResponse> characterResponses = marvelService.getCharacters();
 
         Assertions.assertEquals(mockCharacterResponses, characterResponses);
-        Mockito.verify(repository).save(Mockito.any(ServiceRequestLog.class));
+        Mockito.verify(repository).save(Mockito.any(RequestLog.class));
         Mockito.verify(characterService).getCharacters();
     }
 
@@ -46,7 +46,7 @@ public class MarvelServiceTest {
         CharacterResponse characterResponse = marvelService.getCharacterById(characterId);
 
         Assertions.assertEquals(mockCharacterResponse, characterResponse);
-        Mockito.verify(repository).save(Mockito.any(ServiceRequestLog.class));
+        Mockito.verify(repository).save(Mockito.any(RequestLog.class));
         Mockito.verify(characterService).getCharacterById(characterId);
     }
 }
