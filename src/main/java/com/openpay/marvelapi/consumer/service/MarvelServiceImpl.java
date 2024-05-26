@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class MarvelServiceImpl implements MarvelService {
 
-    private CharacterService characterService;
+    private final CharacterService characterService;
 
     @Autowired
     public MarvelServiceImpl(CharacterService characterService) {
