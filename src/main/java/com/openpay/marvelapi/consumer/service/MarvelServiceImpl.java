@@ -3,8 +3,8 @@ package com.openpay.marvelapi.consumer.service;
 import com.openpay.marvelapi.client.model.dto.CharacterResponse;
 import com.openpay.marvelapi.client.service.CharacterService;
 import com.openpay.marvelapi.client.util.MarvelApiConstants;
-import com.openpay.marvelapi.consumer.model.entity.ServiceRequestLog;
-import com.openpay.marvelapi.consumer.repository.ServiceRequestLogRepository;
+import com.openpay.marvelapi.consumer.model.entity.RequestLog;
+import com.openpay.marvelapi.consumer.repository.RequestLogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,27 +14,27 @@ import java.util.List;
 public class MarvelServiceImpl implements MarvelService {
 
     private final CharacterService characterService;
-    private final ServiceRequestLogRepository serviceRequestLogRepository;
+    private final RequestLogRepository requestLogRepository;
 
     @Autowired
-    public MarvelServiceImpl(CharacterService characterService, ServiceRequestLogRepository serviceRequestLogRepository) {
+    public MarvelServiceImpl(CharacterService characterService, RequestLogRepository requestLogRepository) {
         this.characterService = characterService;
-        this.serviceRequestLogRepository = serviceRequestLogRepository;
+        this.requestLogRepository = requestLogRepository;
     }
 
     @Override
     public List<CharacterResponse> getCharacters() {
-        ServiceRequestLog serviceRequestLog = new ServiceRequestLog();
-        serviceRequestLog.setPath(MarvelApiConstants.CHARACTERS_URI);
-        serviceRequestLogRepository.save(serviceRequestLog);
+        RequestLog requestLog = new RequestLog();
+        requestLog.setPath(MarvelApiConstants.CHARACTERS_URI);
+        requestLogRepository.save(requestLog);
         return characterService.getCharacters();
     }
 
     @Override
     public CharacterResponse getCharacterById(Long characterId) {
-        ServiceRequestLog serviceRequestLog = new ServiceRequestLog();
-        serviceRequestLog.setPath(MarvelApiConstants.CHARACTERS_URI+"/"+characterId);
-        serviceRequestLogRepository.save(serviceRequestLog);
+        RequestLog requestLog = new RequestLog();
+        requestLog.setPath(MarvelApiConstants.CHARACTERS_URI+"/"+characterId);
+        requestLogRepository.save(requestLog);
         return characterService.getCharacterById(characterId);
     }
 }

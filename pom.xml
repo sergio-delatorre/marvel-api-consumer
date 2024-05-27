@@ -69,7 +69,7 @@
 		<dependency>
 			<groupId>com.github.sergio-delatorre</groupId>
 			<artifactId>marvel-api-client</artifactId>
-			<version>master-be000daf87-1</version>
+			<version>bed67e44c9</version>
 		</dependency>
 
 		<dependency>
